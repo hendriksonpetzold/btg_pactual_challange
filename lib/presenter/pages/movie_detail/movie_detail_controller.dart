@@ -1,3 +1,4 @@
+import 'package:btg_pactual_challange/domain/entities/genre_entity.dart';
 import 'package:btg_pactual_challange/domain/usecases/get_genre/get_genre_usecase.dart';
 import 'package:btg_pactual_challange/domain/usecases/get_genre/get_genre_usecase_impl.dart';
 import 'package:get/get.dart';
@@ -8,16 +9,21 @@ class MovieDetailController extends GetxController {
   final String overview = Get.arguments['overview'];
   final double voteAverage = Get.arguments['vote_average'];
   final List<int> genreIds = Get.arguments['genre_ids'];
-  final GetGenreUsecase getGenreUsecase = Get.find<GetGenreUsecaseImpl>();
+
+  List<GenreEntity> genres = Get.arguments['genres'];
+  RxList<String> genresById = RxList([]);
 
   @override
-  void onInit() {
-    fetchGenres();
+  void onInit() async {
+    getGenreById();
     super.onInit();
   }
 
-  Future<void> fetchGenres() async {
-    final result = await getGenreUsecase.execute();
-    print(result);
+  void getGenreById() {
+    for (var element in genres) {
+      if (genreIds.contains(element.id)) {
+        genresById.add(element.name);
+      }
+    }
   }
 }

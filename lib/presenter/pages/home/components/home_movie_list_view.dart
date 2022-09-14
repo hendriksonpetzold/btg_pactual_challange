@@ -39,6 +39,7 @@ class HomeMovieListView extends GetView<HomeController> {
                         'overview': list.overview,
                         'vote_average': list.voteAverage,
                         'genre_ids': list.genreIds,
+                        'genres': controller.genres,
                       },
                     );
                   },

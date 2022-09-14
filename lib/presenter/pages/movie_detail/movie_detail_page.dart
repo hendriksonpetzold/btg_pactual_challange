@@ -24,6 +24,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,6 +47,9 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                     ),
                   ],
                 ),
+                Obx(() {
+                  return Text(controller.genresById.join(','));
+                }),
                 Text(controller.overview),
               ],
             ),
