@@ -21,18 +21,32 @@ class HomeMovieListView extends GetView<HomeController> {
             controller.onLoading();
           },
           child: ListView.builder(
-            itemCount: controller.movie.length,
+            itemCount: controller.searchMovie.length,
             itemBuilder: (context, index) {
-              final list = controller.movie[index];
+              final list = controller.searchMovie[index];
               return Padding(
                 padding: const EdgeInsets.only(
                   top: 8,
                   bottom: 8,
                 ),
-                child: HomeMovieCard(
-                  image: list.image,
-                  movieName: list.name,
-                  releaseDate: list.releaseDate,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(
+                      '/movie_detail',
+                      arguments: {
+                        'image': list.image,
+                        'name': list.name,
+                        'overview': list.overview,
+                        'vote_average': list.voteAverage,
+                        'genre_ids': list.genreIds,
+                      },
+                    );
+                  },
+                  child: HomeMovieCard(
+                    image: list.image,
+                    movieName: list.name,
+                    releaseDate: list.releaseDate,
+                  ),
                 ),
               );
             },

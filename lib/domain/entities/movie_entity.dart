@@ -1,10 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class MovieEntity {
-  String image;
-  String name;
-  String releaseDate;
-  String overview;
-  double voteAverage;
-  List<int> genreIds;
+  final String image;
+  final String name;
+  final String releaseDate;
+  final String overview;
+  final double voteAverage;
+  final List<int> genreIds;
   MovieEntity({
     required this.image,
     required this.name,

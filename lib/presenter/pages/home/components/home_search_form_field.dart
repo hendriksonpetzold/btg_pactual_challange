@@ -10,6 +10,9 @@ class HomeSearchFormField extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller.searchEditingController,
+      onChanged: (value) {
+        controller.searchMovies();
+      },
       style: const TextStyle(color: Colors.black),
       decoration: const InputDecoration(
         hintText: 'Search for movies',

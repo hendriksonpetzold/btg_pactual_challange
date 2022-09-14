@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeController extends GetxController {
-  final GetMovieUsecase datasource = Get.find<GetMovieUsecaseImpl>();
+  final GetMovieUsecase getMovieUsecase = Get.find<GetMovieUsecaseImpl>();
   RefreshController refreshController = RefreshController(initialRefresh: true);
   int currentPage = 1;
   RxList<MovieEntity> movie = RxList([]);
+  RxList<MovieEntity> searchMovie = RxList([]);
   TextEditingController searchEditingController = TextEditingController();
 
   @override
@@ -18,19 +19,28 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  void searchMovies() {
+    final newList = movie
+        .where((e) => e.name.contains(searchEditingController.text))
+        .toList();
+    searchMovie.value = newList;
+  }
+
   Future<bool> fetchMovies({bool isRefresh = false}) async {
     if (isRefresh) {
       currentPage = 1;
     }
 
-    final result = await datasource.execute(currentPage);
+    final result = await getMovieUsecase.execute(currentPage);
     if (result.isEmpty) {
       return false;
     } else {
       if (isRefresh) {
         movie.value = result;
+        searchMovie.value = result;
       } else {
         movie.addAll(result);
+        searchMovie.addAll(result);
       }
       currentPage++;
 
