@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:btg_pactual_challange/domain/entities/movie_entity.dart';
-import 'package:btg_pactual_challange/infra/adapter/movie_adapter.dart';
+import 'package:btg_pactual_challange/infra/adapters/movie_adapter.dart';
 import 'package:btg_pactual_challange/infra/datasources/movie_datasource.dart';
 
 import '../../domain/repository/movie_repository.dart';

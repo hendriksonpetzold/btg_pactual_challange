@@ -22,6 +22,9 @@ class HomePage extends GetView<HomeController> {
         child: Column(
           children: const [
             HomeSearchFormField(),
+            SizedBox(
+              height: 8,
+            ),
             Expanded(
               child: HomeMovieListView(),
             ),

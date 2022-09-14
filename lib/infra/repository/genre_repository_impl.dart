@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:btg_pactual_challange/domain/entities/genre_entity.dart';
-import 'package:btg_pactual_challange/infra/adapter/genre_adapter.dart';
+import 'package:btg_pactual_challange/infra/adapters/genre_adapter.dart';
 import 'package:btg_pactual_challange/infra/datasources/genre_datasource.dart';
 
 import '../../domain/repository/genre_repository.dart';

@@ -51,6 +51,12 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                   return Text(controller.genresById.join(','));
                 }),
                 Text(controller.overview),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.onFavoriteButtonTap();
+                  },
+                  child: const Text('teste'),
+                ),
               ],
             ),
           )

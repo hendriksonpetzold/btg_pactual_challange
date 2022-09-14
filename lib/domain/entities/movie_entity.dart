@@ -1,10 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:hive/hive.dart';
+part '../../infra/adapters/movie_entity_hive_adapter.g.dart';
+
+@HiveType(typeId: 0)
 class MovieEntity {
+  @HiveField(0)
   final String image;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String releaseDate;
+  @HiveField(3)
   final String overview;
+  @HiveField(4)
   final double voteAverage;
+  @HiveField(5)
   final List<int> genreIds;
   MovieEntity({
     required this.image,

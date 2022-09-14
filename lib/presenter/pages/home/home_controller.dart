@@ -7,6 +7,7 @@ import 'package:btg_pactual_challange/domain/usecases/get_movie/get_movie_usecas
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeController extends GetxController {
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchGenres();
+
     super.onInit();
   }
 
