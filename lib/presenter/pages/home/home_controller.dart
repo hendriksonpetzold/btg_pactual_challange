@@ -7,6 +7,7 @@ import 'package:btg_pactual_challange/domain/usecases/get_movie/get_movie_usecas
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -19,11 +20,11 @@ class HomeController extends GetxController {
   RxList<MovieEntity> searchMovie = RxList([]);
   List<GenreEntity> genres = [];
   TextEditingController searchEditingController = TextEditingController();
-
+  late Box<MovieEntity> favoriteMovieBox;
   @override
   void onInit() {
     fetchGenres();
-
+    favoriteMovieBox = Hive.box('favorite');
     super.onInit();
   }
 

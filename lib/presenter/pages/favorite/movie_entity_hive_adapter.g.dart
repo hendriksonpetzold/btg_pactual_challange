@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../domain/entities/movie_entity.dart';
+part of '../../../domain/entities/movie_entity.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -23,13 +23,14 @@ class MovieEntityHiveAdapter extends TypeAdapter<MovieEntity> {
       overview: fields[3] as String,
       voteAverage: fields[4] as double,
       genreIds: (fields[5] as List).cast<int>(),
+      isFavorite: fields[6] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, MovieEntity obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.image)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class MovieEntityHiveAdapter extends TypeAdapter<MovieEntity> {
       ..writeByte(4)
       ..write(obj.voteAverage)
       ..writeByte(5)
-      ..write(obj.genreIds);
+      ..write(obj.genreIds)
+      ..writeByte(6)
+      ..write(obj.isFavorite);
   }
 
   @override

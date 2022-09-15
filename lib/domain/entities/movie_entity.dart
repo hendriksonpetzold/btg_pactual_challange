@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part '../../infra/adapters/movie_entity_hive_adapter.g.dart';
+part '../../presenter/pages/favorite/movie_entity_hive_adapter.g.dart';
 
 @HiveType(typeId: 0)
 class MovieEntity {
@@ -15,6 +15,8 @@ class MovieEntity {
   final double voteAverage;
   @HiveField(5)
   final List<int> genreIds;
+  @HiveField(6)
+  final bool? isFavorite;
   MovieEntity({
     required this.image,
     required this.name,
@@ -22,6 +24,7 @@ class MovieEntity {
     required this.overview,
     required this.voteAverage,
     required this.genreIds,
+    this.isFavorite,
   });
 
   @override

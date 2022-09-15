@@ -31,6 +31,7 @@ class HomeMovieListView extends GetView<HomeController> {
                 ),
                 child: GestureDetector(
                   onTap: () {
+                    final box = controller.favoriteMovieBox.get(list.name);
                     Get.toNamed(
                       '/movie_detail',
                       arguments: {
@@ -41,6 +42,7 @@ class HomeMovieListView extends GetView<HomeController> {
                         'genre_ids': list.genreIds,
                         'genres': controller.genres,
                         'release_date': list.releaseDate,
+                        'is_favorite': box?.isFavorite ?? false,
                       },
                     );
                   },
