@@ -1,3 +1,4 @@
+import 'package:btg_pactual_challange/presenter/pages/movie_detail/components/movie_detail_favorite_button.dart';
 import 'package:btg_pactual_challange/presenter/pages/movie_detail/movie_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,10 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                 image: NetworkImage(
                     'https://image.tmdb.org/t/p/w220_and_h330_face${controller.image}'),
               ),
+            ),
+            child: const Align(
+              alignment: Alignment(0.9, -0.7),
+              child: MovieDetailFavoriteButton(),
             ),
           ),
           Padding(

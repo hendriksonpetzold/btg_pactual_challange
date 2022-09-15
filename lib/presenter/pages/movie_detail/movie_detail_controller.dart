@@ -12,7 +12,7 @@ class MovieDetailController extends GetxController {
   final String releaseDate = Get.arguments['release_date'];
   final double voteAverage = Get.arguments['vote_average'];
   final List<int> genreIds = Get.arguments['genre_ids'];
-
+  RxBool isFavorite = RxBool(false);
   List<GenreEntity> genres = Get.arguments['genres'];
   RxList<String> genresById = RxList([]);
   late Box<MovieEntity> favoriteMovieBox;
@@ -33,16 +33,21 @@ class MovieDetailController extends GetxController {
   }
 
   void onFavoriteButtonTap() {
-    favoriteMovieBox.put(
-      name,
-      MovieEntity(
-        image: image,
-        name: name,
-        releaseDate: releaseDate,
-        overview: overview,
-        voteAverage: voteAverage,
-        genreIds: genreIds,
-      ),
-    );
+    isFavorite.value = !isFavorite.value;
+    if (isFavorite.value == true) {
+      favoriteMovieBox.put(
+        name,
+        MovieEntity(
+          image: image,
+          name: name,
+          releaseDate: releaseDate,
+          overview: overview,
+          voteAverage: voteAverage,
+          genreIds: genreIds,
+        ),
+      );
+    } else {
+      favoriteMovieBox.delete(name);
+    }
   }
 }
