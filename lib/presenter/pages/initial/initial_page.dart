@@ -1,3 +1,4 @@
+import 'package:btg_pactual_challange/presenter/pages/favorite/favorite_controller.dart';
 import 'package:btg_pactual_challange/presenter/pages/favorite/favorite_page.dart';
 import 'package:btg_pactual_challange/presenter/pages/home/home_page.dart';
 import 'package:btg_pactual_challange/presenter/pages/initial/initial_controller.dart';
@@ -25,6 +26,7 @@ class InitialPage extends GetView<InitialController> {
             currentIndex: controller.index.value,
             onTap: (newIndex) {
               controller.index.value = newIndex;
+              Get.find<FavoriteController>().updateList();
             },
             items: const [
               BottomNavigationBarItem(

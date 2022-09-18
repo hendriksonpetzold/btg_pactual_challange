@@ -1,5 +1,5 @@
 import 'package:btg_pactual_challange/presenter/pages/home/components/home_movie_list_view.dart';
-import 'package:btg_pactual_challange/presenter/pages/home/components/home_search_form_field.dart';
+import 'package:btg_pactual_challange/presenter/components/search_form_field.dart';
 import 'package:btg_pactual_challange/presenter/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,12 +20,18 @@ class HomePage extends GetView<HomeController> {
           right: 24,
         ),
         child: Column(
-          children: const [
-            HomeSearchFormField(),
-            SizedBox(
+          children: [
+            SearchFormField(
+              controller: controller.searchEditingController,
+              hintText: 'Search for movies',
+              onChanged: (value) {
+                controller.searchMovies();
+              },
+            ),
+            const SizedBox(
               height: 8,
             ),
-            Expanded(
+            const Expanded(
               child: HomeMovieListView(),
             ),
           ],

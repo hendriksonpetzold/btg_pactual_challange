@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../domain/entities/movie_entity.dart';
+part of '../../domain/entities/movie_entity.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

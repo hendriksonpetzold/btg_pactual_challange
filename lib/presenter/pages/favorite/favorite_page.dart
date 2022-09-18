@@ -1,4 +1,5 @@
 import 'package:btg_pactual_challange/domain/entities/movie_entity.dart';
+import 'package:btg_pactual_challange/presenter/components/search_form_field.dart';
 import 'package:btg_pactual_challange/presenter/pages/favorite/favorite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,21 +14,37 @@ class FavoritePage extends GetView<FavoriteController> {
       appBar: AppBar(
         title: const Text('Favorite'),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: controller.movieFavoriteBox.listenable(),
-        builder: (context, Box<MovieEntity> box, _) {
-          List<MovieEntity> favoriteMovie =
-              box.values.toList().cast<MovieEntity>();
-          return ListView.builder(
-            itemCount: favoriteMovie.length,
-            itemBuilder: (context, index) {
-              final list = favoriteMovie[index];
-              return ListTile(
-                title: Text(list.name),
-              );
-            },
-          );
-        },
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchFormField(
+              onTap: () {
+                controller.updateList();
+              },
+              onChanged: (value) {
+                controller.searchForMovies();
+              },
+              hintText: 'Search by name or release year',
+              controller: controller.searchEditingController,
+            ),
+          ),
+          Expanded(
+            child: Obx(
+              () {
+                return ListView.builder(
+                  itemCount: controller.searchList.length,
+                  itemBuilder: (context, index) {
+                    final list = controller.searchList[index];
+                    return ListTile(
+                      title: Text(list.name),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

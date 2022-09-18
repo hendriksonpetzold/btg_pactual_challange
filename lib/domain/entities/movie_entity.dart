@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part '../../presenter/pages/favorite/movie_entity_hive_adapter.g.dart';
+part '../../infra/adapters/movie_entity_hive_adapter.g.dart';
 
 @HiveType(typeId: 0)
 class MovieEntity {
