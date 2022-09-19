@@ -26,16 +26,15 @@ class InitialPage extends GetView<InitialController> {
             currentIndex: controller.index.value,
             onTap: (newIndex) {
               controller.index.value = newIndex;
-              Get.find<FavoriteController>().updateList();
             },
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'Home',
+                label: 'Movies',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite),
-                label: 'Favorite',
+                label: 'Favorites',
               ),
             ],
           );

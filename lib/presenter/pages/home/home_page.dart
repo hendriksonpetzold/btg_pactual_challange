@@ -11,7 +11,8 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Movies'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.only(

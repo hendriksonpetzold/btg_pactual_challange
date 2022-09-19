@@ -1,9 +1,7 @@
-import 'package:btg_pactual_challange/domain/entities/movie_entity.dart';
 import 'package:btg_pactual_challange/presenter/components/search_form_field.dart';
 import 'package:btg_pactual_challange/presenter/pages/favorite/favorite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class FavoritePage extends GetView<FavoriteController> {
   const FavoritePage({Key? key}) : super(key: key);
@@ -12,7 +10,8 @@ class FavoritePage extends GetView<FavoriteController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite'),
+        title: const Text('Favorites'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -36,8 +35,27 @@ class FavoritePage extends GetView<FavoriteController> {
                   itemCount: controller.searchList.length,
                   itemBuilder: (context, index) {
                     final list = controller.searchList[index];
-                    return ListTile(
-                      title: Text(list.name),
+                    return GestureDetector(
+                      onTap: () {
+                        final box = controller.favoriteMovieBox.get(list.name);
+                        Get.toNamed(
+                          '/movie_detail',
+                          arguments: {
+                            'image': list.image,
+                            'name': list.name,
+                            'overview': list.overview,
+                            'vote_average': list.voteAverage,
+                            'genre_ids': list.genreIds,
+                            'genres': controller.genres,
+                            'release_date': list.releaseDate,
+                            'is_favorite': box?.isFavorite ?? false,
+                          },
+                        );
+                      },
+                      child: ListTile(
+                        title: Text(list.name),
+                        subtitle: Text(list.releaseDate),
+                      ),
                     );
                   },
                 );

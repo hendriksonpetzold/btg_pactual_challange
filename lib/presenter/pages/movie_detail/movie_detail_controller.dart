@@ -1,4 +1,5 @@
 import 'package:btg_pactual_challange/domain/entities/genre_entity.dart';
+import 'package:btg_pactual_challange/presenter/pages/favorite/favorite_controller.dart';
 
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -47,8 +48,10 @@ class MovieDetailController extends GetxController {
           isFavorite: isFavorite.value,
         ),
       );
+      Get.find<FavoriteController>().updateList();
     } else {
       favoriteMovieBox.delete(name);
+      Get.find<FavoriteController>().updateList();
     }
   }
 }
