@@ -4,6 +4,7 @@ import 'package:btg_pactual_challange/domain/usecases/get_genre/get_genre_usecas
 import 'package:btg_pactual_challange/domain/usecases/get_genre/get_genre_usecase_impl.dart';
 import 'package:btg_pactual_challange/domain/usecases/get_movie/get_movie_usecase.dart';
 import 'package:btg_pactual_challange/domain/usecases/get_movie/get_movie_usecase_impl.dart';
+import 'package:btg_pactual_challange/enums/movie_list_enum.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -21,6 +22,9 @@ class HomeController extends GetxController {
   List<GenreEntity> genres = [];
   TextEditingController searchEditingController = TextEditingController();
   late Box<MovieEntity> favoriteMovieBox;
+  final Rx<MovieListEnum> _activeList = Rx<MovieListEnum>(MovieListEnum.all);
+  MovieListEnum get activeList => _activeList.value;
+  RxInt genre = RxInt(28);
   @override
   void onInit() {
     fetchGenres();
@@ -55,6 +59,7 @@ class HomeController extends GetxController {
       } else {
         movie.addAll(result);
         searchMovie.addAll(result);
+        fetchMoviesByGenre();
       }
       currentPage++;
 
@@ -77,6 +82,67 @@ class HomeController extends GetxController {
       refreshController.loadComplete();
     } else {
       refreshController.loadFailed();
+    }
+  }
+
+  Future<void> fetchMoviesByGenre() async {
+    List<MovieEntity> newList = movie
+        .where((element) => element.genreIds.contains(genre.value))
+        .toList();
+    searchMovie.value = newList;
+  }
+
+  void changeList({required MovieListEnum list}) {
+    _activeList.value = list;
+  }
+
+  RxBool checkActiveList({required MovieListEnum list}) {
+    if (list == _activeList.value) return RxBool(true);
+    return RxBool(false);
+  }
+
+  void getListByGenre() {
+    switch (_activeList.value) {
+      case MovieListEnum.all:
+        searchMovie.value = movie;
+
+        break;
+      case MovieListEnum.action:
+        genre.value = 28;
+        fetchMoviesByGenre();
+
+        break;
+
+      case MovieListEnum.adventure:
+        genre.value = 12;
+        fetchMoviesByGenre();
+
+        break;
+
+      case MovieListEnum.comedy:
+        genre.value = 35;
+        fetchMoviesByGenre();
+
+        break;
+
+      case MovieListEnum.drama:
+        genre.value = 18;
+        fetchMoviesByGenre();
+
+        break;
+
+      case MovieListEnum.horror:
+        genre.value = 27;
+        fetchMoviesByGenre();
+
+        break;
+
+      case MovieListEnum.romance:
+        genre.value = 10749;
+        fetchMoviesByGenre();
+
+        break;
+      default:
     }
   }
 }
