@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 
-import '../infra/datasources/movie_datasource.dart';
+import '../../infra/datasources/movie_datasource.dart';
 
 class MovieDatasourceImpl implements MovieDatasource {
   Dio dio;

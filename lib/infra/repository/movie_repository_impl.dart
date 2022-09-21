@@ -13,10 +13,13 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<List<MovieEntity>> getMovie(int page) async {
-    final result = await datasource.getMovie(page);
-
-    return result.map((e) {
-      return MovieAdapter.fromMap(e);
-    }).toList();
+    try {
+      final result = await datasource.getMovie(page);
+      return result.map((e) {
+        return MovieAdapter.fromMap(e);
+      }).toList();
+    } on Exception {
+      return [];
+    }
   }
 }
