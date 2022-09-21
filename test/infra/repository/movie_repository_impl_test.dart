@@ -18,10 +18,10 @@ void main() {
     expect(result, isA<List<MovieEntity>>());
   });
 
-  test('deve retornar uma lista vaziay', () async {
+  test('deve retornar uma lista vazia', () async {
     when(() => datasource.getMovie(any())).thenThrow(Exception());
     final result = await repository.getMovie(1);
 
-    expect(result, isA<List<MovieEntity>>());
+    expect(result, isEmpty);
   });
 }

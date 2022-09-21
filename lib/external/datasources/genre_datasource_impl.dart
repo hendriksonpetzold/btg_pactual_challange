@@ -17,7 +17,7 @@ class GenreDatasourceImpl implements GenreDatasource {
       final result = response.data['genres'] as List;
       return result;
     } else {
-      return [];
+      throw Exception();
     }
   }
 }

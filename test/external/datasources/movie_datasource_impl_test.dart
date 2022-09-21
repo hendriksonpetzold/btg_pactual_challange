@@ -10,11 +10,17 @@ void main() {
   final dio = DioMock();
   final datasource = MovieDatasourceImpl(dio: dio);
 
-  test('deve retornar uma lista', () async {
-    when(() => dio.get(any())).thenAnswer(
-        (_) async => Response(requestOptions: RequestOptions(path: 'path')));
+  test('deve retornar uma exception', () async {
+    when(() => dio.get(any())).thenAnswer((_) async => Response(
+          requestOptions: RequestOptions(path: 'path'),
+        ));
 
-    final result = await datasource.getMovie(1);
-    expect(result, isA<List>());
+    final result = datasource.getMovie;
+    expect(
+      () async {
+        await result(1);
+      },
+      throwsException,
+    );
   });
 }
