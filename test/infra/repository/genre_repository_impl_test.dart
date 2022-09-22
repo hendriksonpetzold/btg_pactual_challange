@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:btg_pactual_challange/domain/entities/genre_entity.dart';
 import 'package:btg_pactual_challange/domain/repository/genre_repository.dart';
 import 'package:btg_pactual_challange/infra/datasources/genre_datasource.dart';
